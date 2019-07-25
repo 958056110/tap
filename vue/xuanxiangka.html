@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .active {
+      color: #fff;
+      background: #e74c3c;
+    }
+    #app {
+      width: 800px;
+      height: 400px;
+      margin: 100px auto;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    }
+    .menuList {
+      width: 800px;
+      height: 60px;
+      background-color: #33344a;
+    }
+    ul {
+      width: 100%;
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #717181;
+      font-size: 16px;
+      line-height: 60px;
+    }
+    ul li {
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+    }
+    .tabCon {
+      width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      color: #999;
+      font-size: 14px;
+      background-color: #fff;
+    }
+  </style>
+  <script src="vue.js"></script>
+<body>
+    <div id="app">
+        <div class="menuList">
+          <ul>
+            <li v-for="(item,index) in list" :key="item.id" :class="{active:num==index}" @click="getNum(index)">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+        <div class="tabCon">
+          <div v-for='(itemCon,index) in cons' v-show="index == num">
+            {{itemCon}}
+          </div>
+        </div>
+      </div>
+      <script>
+        var app = new Vue({
+          el: "#app",
+          data : {
+            num: 0,
+              list: ['体育', "新闻", "娱乐"],
+              cons: [
+                "体育", 
+                "新闻",
+                "娱乐"],
+          },
+          methods:{
+            getNum(index) {
+              this.num = index;
+            }
+          }
+        })
+      </script>
+</body>
+</html>
