@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="vue.js"></script>
+<style>
+    .textbox {
+        width: 500px;
+        height: 200px;
+        border: 1px solid #ccc;
+    }
+
+    .lightTex {
+        background: yellow;
+    }
+</style>
+
+<body>
+    <div id="demo">
+        <input type="text" v-model.trim="val">
+        <div class="textbox" v-html="textVal">
+
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#demo",
+            data() {
+                return {
+                    val: '',
+                    textVal: '你好，欢迎来到广东海洋大学你好，欢迎来到广东海洋大学你好，欢迎来到广东海洋大学你好，欢迎来到广东海洋大学',
+                    textVal2: '你好，欢迎来到广东海洋大学你好，欢迎来到广东海洋大学你好，欢迎来到广东海洋大学你好，欢迎来到广东海洋大学',
+                }
+            },
+            watch: {
+                val(){
+                    if (this.val) {
+                        this.textVal = this.textVal2;
+                        let reg = new RegExp(this.val, 'g');
+                        let activeTex = '<span class="lightTex">' + this.val + '</span>';
+                        this.textVal = this.textVal.replace(reg, activeTex);
+                        console.log(this.textVal)
+                    } else {
+                        this.textVal = this.textVal2;
+                    }
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>
